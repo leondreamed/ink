@@ -66,12 +66,12 @@ export interface Instance {
 type RenderFunction = <Props, K extends NodeJS.WriteStream | RenderOptions>(
 	tree: ReactElement<Props>,
 	options?: K
-) => Instance;
+) => Ink;
 
 /**
  * Mount a component and render the output.
  */
-const render: RenderFunction = (node, options): Instance => {
+const render: RenderFunction = (node, options): Ink => {
 	const inkOptions: InkOptions = {
 		stdout: process.stdout,
 		stdin: process.stdin,
@@ -89,13 +89,7 @@ const render: RenderFunction = (node, options): Instance => {
 
 	instance.render(node);
 
-	return {
-		rerender: instance.render,
-		unmount: () => instance.unmount(),
-		waitUntilExit: instance.waitUntilExit,
-		cleanup: () => instances.delete(inkOptions.stdout),
-		clear: instance.clear
-	};
+	return instance
 };
 
 export default render;
