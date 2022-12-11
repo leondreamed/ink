@@ -17,7 +17,8 @@
 	"scripts": {
 		"build": "tsc",
 		"prepare": "npm run build",
-		"test": "tsc --noEmit && xo && FORCE_COLOR=true ava"
+		"test": "tsc --noEmit && xo && FORCE_COLOR=true ava",
+		"release": "npm publish --access=public"
 	},
 	"files": [
 		"build"
